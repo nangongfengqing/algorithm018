@@ -1,0 +1,16 @@
+function combine(n: number, k: number): number[][] {
+    const ans: number[][] = []
+    const dfs = (cur: number, n: number, k: number, temp: number[]) => {
+        if (temp.length + (n - cur + 1) < k) {
+            return
+        }
+        if (temp.length == k) {
+            ans.push(temp)
+            return
+        }
+        dfs(cur + 1, n, k, [...temp, cur])
+        dfs(cur + 1, n, k, temp)
+    }
+    dfs(1, n, k, [])
+    return ans
+}
